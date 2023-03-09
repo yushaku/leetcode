@@ -11,25 +11,23 @@
  */
 
 function majorityElement(nums: number[]): number {
-  const mapValue = new Map<number, number>();
+  let cadicate = 0;
+  let vote = 0;
+  for (let i = 0; i < nums.length; i++) {
+    const currentValue = nums[i];
 
-  nums.forEach((num) => {
-    if (mapValue.has(num) && mapValue.get(num) !== undefined) {
-      let oldValue = Number(mapValue.get(num));
-      mapValue.set(num, ++oldValue);
-    } else {
-      mapValue.set(num, 1);
+    if (vote === 0) {
+      cadicate = currentValue;
     }
-  });
 
-  let result: number;
-  let max: number;
-  for (const result of mapValue) {
-    console.log(result);
+    if (currentValue === cadicate) {
+      vote++;
+    } else {
+      vote--;
+    }
   }
-
-  return 0;
+  return cadicate;
 }
 
-const nums = [2, 2, 1, 1, 1, 2, 2];
+const nums = [2, 2, 2, 2, 2, 4, 4, 4, 4, 4, 5, 2];
 console.log(majorityElement(nums));
