@@ -2,22 +2,16 @@
  * Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
  * You may assume that each input would have exactly one solution, and you may not use the same element twice.
  * You can return the answer in any order.
- * */
 
-/*
  * Example 1
  * Input: nums = [2,7,11,15], target = 9
  * Output: [0,1]
  * Explanation: Because nums[0] + nums[1] == 9, we return [0, 1].
- * */
 
-/*
  * Example 2
  * Input: nums = [3,3], target = 6
  * Output: [0,1]
- * */
 
-/*
  * algorithms
  * we define a mapValue contain [ needFindNumber => itsNumberIndex ]
  * loop throw the array and let target number subtract current number and store calculated value and current index to mapValue
@@ -43,8 +37,6 @@ function twoSum(nums: number[], target: number): number[] {
     }
   });
 
-  // console.log(mapValue);
-  // console.log(result);
   return result;
 }
 

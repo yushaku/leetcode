@@ -6,48 +6,68 @@
  * 3. Every close bracket has a corresponding open bracket of the same type.
  */
 
-function isValid(s: string): boolean {
-  let status = true;
-  const stack: Array<string> = [];
-  const closePair = new Set([']', '}', ')']);
-  const pair = {
-    '{': '}',
-    '[': ']',
-    '(': ')',
-  };
+// function isValid(s: string): boolean {
+//   if (s.length < 2) return false;
+//   const stack: Array<string> = [];
+//   const pair = {
+//     '{': '}',
+//     '[': ']',
+//     '(': ')',
+//   };
 
-  const arrChars = s.split('');
+//   for (let index = 0; index < s.length; index++) {
+//     const char = s.charAt(index);
+//     if (char === '[' || char === '{' || char === '(') {
+//       stack.push(char);
+//     } else {
+//       const closePair = pair[stack.pop()!];
+//       if (closePair !== char) return false;
+//     }
+//   }
 
-  for (let index = 0; index < arrChars.length; index++) {
-    const char = arrChars[index];
+//   return stack.length === 0;
+// }
 
-    if (pair[char] !== undefined) {
-      // console.log(pair[char]);
-      stack.push(pair[char]);
-    }
+// const s = '((';
+// console.log(isValid(s));
+class MinStack {
+  private items: Array<any>;
 
-    if (stack.length === 0) {
-      closePair.has(char);
-      status = false;
-      break;
-    }
-
-    if (closePair.has(char)) {
-      const matchPair = stack.pop();
-      // console.log(matchPair);
-      if (matchPair !== char) {
-        status = false;
-        break;
-      }
-    }
+  constructor() {
+    this.items = [];
   }
 
-  if (stack.length !== 0) {
-    status = false;
+  push(val: number): void {
+    this.items.push(val);
   }
 
-  return status;
+  pop(): void {
+    this.items.pop();
+  }
+
+  top(): number {
+    if (this.items.length === 0) return null;
+    return this.items[this.items.length - 1];
+  }
+
+  getMin(): number {
+    return this.items.reduce((pre, cur) => {
+      return pre > cur ? cur : pre;
+    }, this.items[0]);
+  }
 }
 
-const s = '((haha)[ok khong ne][dc]{haha}))';
-console.log(isValid(s));
+const stack = new MinStack();
+stack.getMin();
+stack.push(2);
+stack.push(0);
+stack.push(3);
+stack.push(0);
+stack.getMin();
+stack.pop();
+stack.getMin();
+stack.pop();
+stack.getMin();
+stack.pop();
+console.log(stack);
+console.log(stack.getMin());
