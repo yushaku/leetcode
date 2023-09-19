@@ -2,8 +2,6 @@
 // Merge the two lists into one sorted list. The list should be made by splicing together the nodes of the first two lists.
 // Return the head of the merged linked list.
 
-import { LinkedList } from "./leetcode/linkedList/LinkedList";
-
 // Example 1:
 // Input: list1 = [1,2,4], list2 = [1,3,4]
 // Output: [1,1,2,3,4,4]
@@ -25,10 +23,7 @@ class ListNode {
   }
 }
 
-function mergeTwoLists(
-  list1: ListNode | null,
-  list2: ListNode | null,
-): ListNode | null {
+function mergeTwoLists(list1: ListNode | null, list2: ListNode | null): ListNode | null {
   const merged = new ListNode();
   let tail = merged;
 
@@ -46,12 +41,3 @@ function mergeTwoLists(
   if (list2) tail.next = list2;
   return merged.next;
 }
-
-const list1 = new LinkedList<number>();
-const list2 = new LinkedList<number>();
-
-[1, 2, 4].forEach((val) => list1.append(val));
-[1, 3, 4].forEach((val) => list2.append(val));
-
-console.log(list1);
-console.log(list2);

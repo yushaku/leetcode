@@ -1,30 +1,31 @@
 export class ListNode<T> {
-  val: T;
+  val: T | null;
   next: ListNode<T> | null;
   constructor(val?: T, next?: ListNode<T> | null) {
-    this.val = val ?? (0 as T);
+    this.val = val ?? null;
     this.next = next ?? null;
   }
 }
 
-export class LinkedList<T> {
+export class SingleLinkedList<T> {
   head: ListNode<T> | null;
+  tail: ListNode<T> | null;
 
   constructor() {
     this.head = null;
+    this.tail = null;
   }
 
   // insert ListNode at the end of the linked list
   append(val: T) {
     const newListNode = new ListNode(val);
-    if (!this.head) {
+    if (!this.head || !this.tail) {
       this.head = newListNode;
+      this.tail = newListNode;
       return;
     }
-    let current = this.head;
-    while (current.next) {
-      current = current.next;
-    }
+
+    let current = this.tail;
     current.next = newListNode;
   }
 
