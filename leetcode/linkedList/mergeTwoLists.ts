@@ -5,7 +5,7 @@ You are given the heads of two sorted linked lists `list1` and `list2`.
 - Return _the head of the merged linked list_.
 
 _**Example 1:**_
-- **Input:** list1 = `[1, 2, 4]`, list2 = `[1, 3, 4]`
+- **Input:** list1 = [1, 2, 4], list2 = [1, 3, 4]
 - **Output:** `[1, 1, 2, 3, 4, 4]`
 - ![](https://assets.leetcode.com/uploads/2020/10/03/merge_ex1.jpg)
 
@@ -15,6 +15,7 @@ _**Example 2:**_
 */
 
 import { ListNode } from "./SingleLinkedList";
+import { createLinkedListFromArray, displayLinkedList } from "./helper";
 class Node extends ListNode<number> {}
 
 function mergeTwoLists(list1: Node | null, list2: Node | null): Node | null {
@@ -35,3 +36,11 @@ function mergeTwoLists(list1: Node | null, list2: Node | null): Node | null {
   if (list2) tail.next = list2;
   return merged.next;
 }
+
+const arr1 = [1, 2, 4, 5, 66, 9],
+  arr2 = [1, 3, 4];
+
+const list1 = createLinkedListFromArray(arr1);
+const list2 = createLinkedListFromArray(arr2);
+const head = mergeTwoLists(list1, list2);
+displayLinkedList(head);

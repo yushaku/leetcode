@@ -49,31 +49,33 @@ export class SingleLinkedList<T> {
   }
 
   // sort the linked list in ascending order
-  // sort() {
-  //   if (!this.head || !this.head.next) {
-  //     return;
-  //   }
-  //   let current = this.head;
-  //   while (current) {
-  //     let runner = current.next;
-  //     while (runner) {
-  //       if (current.val > runner.val) {
-  //         [current.val, runner.val] = [runner.val, current.val];
-  //       }
-  //       runner = runner.next;
-  //     }
-  //     current = current.next;
-  //   }
-  // }
-  //
-  // // print all the ListNodes in the linked list
-  // traverse() {
-  //   if (!this.head) {
-  //     return;
-  //   }
-  //   let current = this.head;
-  //   while (current) {
-  //     current = current.next;
-  //   }
-  // }
+  sort() {
+    if (!this.head || !this.head.next) return;
+
+    let current = this.head;
+    while (current) {
+      let runner = current.next;
+
+      while (runner) {
+        if (current.val! > runner.val!) {
+          [current.val, runner.val] = [runner.val, current.val];
+        }
+        runner = runner.next;
+      }
+      current = current.next!;
+    }
+  }
+
+  // print all the ListNodes in the linked list
+  traverse() {
+    if (!this.head) return;
+    let result = "";
+
+    let current = this.head;
+    while (current) {
+      result = result.concat(`(${current.val}) => `);
+      current = current.next!;
+    }
+    console.log(`${result} null`);
+  }
 }

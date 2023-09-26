@@ -1,21 +1,26 @@
-class ListNode {
-  public value: string;
-  public next: ListNode | null;
+import { ListNode } from "./SingleLinkedList";
+import { createLinkedListFromArray, displayLinkedList } from "./helper";
 
-  constructor(value: string, next: ListNode | null) {
-    this.value = value;
-    this.next = next;
-  }
-}
+type Node = ListNode<number> | null;
 
-function reverseList(head: ListNode | null): ListNode | null {
-  let prev: ListNode | null = null;
+let result = "";
+function reverseList(head: Node): Node {
+  let prev: Node = null;
 
-  while (head) {
-    let ele = head.next;
+  while (head && head.val !== null) {
+    result = result.concat(`${head.val} =>`);
+    console.log({ result, next: head.next?.val });
+
+    let next = head.next;
     head.next = prev;
     prev = head;
-    head = ele;
+    head = next;
   }
   return prev;
 }
+
+const inputArray = [1, 2, 3, 6, 5, 0, 6];
+const linkedList = createLinkedListFromArray(inputArray);
+displayLinkedList(linkedList);
+
+displayLinkedList(reverseList(linkedList));

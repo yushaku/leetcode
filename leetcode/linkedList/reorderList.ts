@@ -8,15 +8,10 @@ Reorder the list to be on the following form:
 You may not modify the values in the list's nodes. Only nodes themselves may be changed. 
 */
 
-class ListNode {
-  val: number;
-  next: ListNode | null;
-  constructor(val?: number, next?: ListNode | null) {
-    this.val = val === undefined ? 0 : val;
-    this.next = next === undefined ? null : next;
-  }
-}
-function reorderList(head: ListNode | null): void {
+import { ListNode } from "./SingleLinkedList";
+import { createLinkedListFromArray, displayLinkedList } from "./helper";
+
+function reorderList(head: ListNode<number> | null): void {
   if (!head) return;
 
   // find middle of linked list and split it into 2 linked list
@@ -29,9 +24,9 @@ function reorderList(head: ListNode | null): void {
   }
 
   // revert second liskend list
-  let second: ListNode | null = slow.next;
+  let second: ListNode<number> | null = slow.next;
   slow.next = null;
-  let prev: ListNode | null = null;
+  let prev: ListNode<number> | null = null;
   while (second) {
     let temp = second.next;
     second.next = prev;
@@ -40,7 +35,7 @@ function reorderList(head: ListNode | null): void {
   }
 
   // step 3: merge
-  let first: ListNode = head;
+  let first: ListNode<number> = head;
   second = prev;
   while (second) {
     let temp1 = first.next;
@@ -53,3 +48,9 @@ function reorderList(head: ListNode | null): void {
     second = temp2!;
   }
 }
+
+const inputArray = [1, 2, 3, 6, 0, 12, 88, 4, 5];
+const inputList = createLinkedListFromArray(inputArray);
+
+reorderList(inputList);
+displayLinkedList(inputList);
