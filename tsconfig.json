@@ -2,10 +2,11 @@
   "compilerOptions": {
     "lib": ["ESNext"],
     "module": "esnext",
-    "target": "esnext",
+    "target": "ES2021",
     "moduleResolution": "bundler",
     "esModuleInterop": true,
     "moduleDetection": "force",
+    "experimentalDecorators": true,
     "allowImportingTsExtensions": true,
     "noEmit": true,
     "composite": true,
@@ -19,7 +20,7 @@
     "types": ["bun-types"],
     "baseUrl": "./",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./*"]
     }
   }
 }
